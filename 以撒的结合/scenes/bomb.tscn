@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://rnmaq84jt18l"]
+
+[ext_resource type="Script" uid="uid://8yi1s2idxr7f" path="res://Bomb.cs" id="1_4kkau"]
+
+[node name="Bomb" type="Area2D"]
+script = ExtResource("1_4kkau")
+
+[node name="bomb" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

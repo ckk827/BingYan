@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://jxv5f5xtk4o6"]
+
+[ext_resource type="PackedScene" uid="uid://d2gj446y0ft4p" path="res://scenes/player.tscn" id="1_dddr5"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(243.50005, 228.5)
+scale = Vector2(1.9326925, 1.8711538)
+
+[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
+zoom = Vector2(0.945, 0.705)
+
+[node name="player" parent="Sprite2D" instance=ExtResource("1_dddr5")]
