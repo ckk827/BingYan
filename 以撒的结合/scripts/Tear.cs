@@ -42,10 +42,16 @@ public partial class Tear : Area2D
     }
     private void Hit(Node2D body)
     {
-        if (body.Name!="Player")
+        if (body.Name!="Player" && !isExploding)
         {
             isExploding = true;
             speed = 0;
+
+            if (body is EnemyBase enemy)
+            {
+                enemy.TakeDamage((int)damage);
+            }
+            isExploding = true;
             tear.Play("tearBoom");  //击中，销毁
         }
     }

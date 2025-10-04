@@ -50,6 +50,8 @@ public partial class EnemyBase : CharacterBody2D
         GD.Print($"{Name} died!");
         EnemyAnim.Play("die");
         EnableContactDamage = false;
+        CanMove = false;         
+        Velocity = Vector2.Zero; // 清空速度
     }
     private void OnBodyEntered(Node2D body)
     {

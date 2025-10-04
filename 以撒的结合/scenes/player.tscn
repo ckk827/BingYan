@@ -409,7 +409,7 @@ height = 66.0
 [node name="player" type="CharacterBody2D"]
 position = Vector2(-3, 8)
 script = ExtResource("1_3vyb7")
-moveSpeed = 300.0
+moveSpeed = 500.0
 tearScene = ExtResource("2_tuyoq")
 bombScene = ExtResource("3_fjrip")
 

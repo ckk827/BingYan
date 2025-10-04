@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://daq0qhjveg7h6"]
+
+[ext_resource type="Script" uid="uid://o4ya1jw7p1o5" path="res://scripts/Door.cs" id="1_hpvv5"]
+
+[node name="door" type="StaticBody2D"]
+script = ExtResource("1_hpvv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
