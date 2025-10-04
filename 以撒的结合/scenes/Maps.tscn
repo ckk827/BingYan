@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://jxv5f5xtk4o6"]
+[gd_scene load_steps=3 format=3 uid="uid://jxv5f5xtk4o6"]
 
 [ext_resource type="PackedScene" uid="uid://d2gj446y0ft4p" path="res://scenes/player.tscn" id="1_dddr5"]
+[ext_resource type="PackedScene" uid="uid://dr2qtqv7cv1dp" path="res://scenes/enemy/enemyNerve.tscn" id="2_to3h6"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,3 +13,6 @@ scale = Vector2(1.9326925, 1.8711538)
 zoom = Vector2(0.945, 0.705)
 
 [node name="player" parent="Sprite2D" instance=ExtResource("1_dddr5")]
+
+[node name="enemyNerve" parent="Sprite2D" instance=ExtResource("2_to3h6")]
+position = Vector2(105.81091, 7.7492294)

@@ -1,11 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://qmlo47185b1w"]
+[gd_scene load_steps=13 format=3 uid="uid://qmlo47185b1w"]
 
 [ext_resource type="Script" uid="uid://doct76tnciqil" path="res://scripts/Tear.cs" id="1_w3po0"]
 [ext_resource type="Texture2D" uid="uid://de7rl514s86ht" path="res://以撒全贴图/人物/表人物/tears.png" id="2_68clx"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_av261"]
-atlas = ExtResource("2_68clx")
-region = Rect2(0, 0, 61, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gt6t"]
 atlas = ExtResource("2_68clx")
@@ -31,10 +27,6 @@ region = Rect2(61, 61, 61, 61)
 atlas = ExtResource("2_68clx")
 region = Rect2(122, 61, 61, 61)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8u0qv"]
-atlas = ExtResource("2_68clx")
-region = Rect2(183, 61, 61, 61)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_trlec"]
 atlas = ExtResource("2_68clx")
 region = Rect2(0, 122, 61, 61)
@@ -43,10 +35,6 @@ region = Rect2(0, 122, 61, 61)
 atlas = ExtResource("2_68clx")
 region = Rect2(61, 122, 61, 61)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5wq1q"]
-atlas = ExtResource("2_68clx")
-region = Rect2(122, 122, 61, 61)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3po0"]
 atlas = ExtResource("2_68clx")
 region = Rect2(0, 20, 61, 20)
@@ -54,9 +42,6 @@ region = Rect2(0, 20, 61, 20)
 [sub_resource type="SpriteFrames" id="SpriteFrames_bnf77"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_av261")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0gt6t")
 }, {
@@ -76,18 +61,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_op60n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8u0qv")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_trlec")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mfagu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5wq1q")
 }],
-"loop": true,
+"loop": false,
 "name": &"tearBoom",
 "speed": 20.0
 }, {
@@ -109,5 +88,6 @@ script = ExtResource("1_w3po0")
 position = Vector2(-2, 5)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_bnf77")
-animation = &"tearFly"
-frame_progress = 0.36648017
+animation = &"tearBoom"
+frame = 7
+frame_progress = 1.0

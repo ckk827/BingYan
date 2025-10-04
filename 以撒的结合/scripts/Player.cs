@@ -9,7 +9,11 @@ public partial class Player : CharacterBody2D
     [Export] public float moveSpeed = 5f;
     [Export] public int health = 6;
     [Export] public float tearCD = 0.3f;
+    [Export] public float bombCD = 0.5f;
+    [Export] public float invincibleDuration = 1f;
     [Export] private PackedScene tearScene;
+    [Export] private PackedScene bombScene;
+    
 
     //private string currentDir = "Down";
     private string currentState = "Stand";
@@ -22,6 +26,9 @@ public partial class Player : CharacterBody2D
     private Vector2 facingDirection = Vector2.Down;
 
     private float tearTimer = 0f;             // 射击计时器
+    private float bombTimer = 0f;             // 炸弹计时器
+    private float invincibleTimer = 0f;             // 无敌时间计时器
+
 
     public override void _Ready()
     {
@@ -39,6 +46,8 @@ public partial class Player : CharacterBody2D
         feetAnimation();
         HeadAnimation();
         HandleShooting(delta); // 射击逻辑
+        HandleBomb(delta); // 炸弹逻辑
+        Invincibility( delta); // 无敌时间逻辑
         MoveAndSlide();
     }
     private void getSpeed()
@@ -103,11 +112,67 @@ public partial class Player : CharacterBody2D
 
     private void Shoot(Vector2 shootDir)
     {
-        // 实例化泪滴
         var tear = (Tear)tearScene.Instantiate();
         tear.GlobalPosition = GlobalPosition;     // 从玩家位置发射
         tear.GetShootDirection(shootDir, Velocity , 0.3f);  //输入发射速度方向，玩家速度及其权重，计算出子弹初速度方向
         // 添加到场景
         GetTree().CurrentScene.AddChild(tear);
+    }
+    private void HandleBomb(double delta)
+    {
+        if (bombTimer > 0)
+            bombTimer -= (float)delta;
+        else
+        {
+            if (Input.IsActionPressed("bomb"))
+            {
+                Bomb();
+                bombTimer = bombCD;
+            }
+        }
+    }
+    private void Bomb()
+    {
+        var bomb = (Bomb)bombScene.Instantiate();
+        bomb.GlobalPosition = GlobalPosition; ;
+        GetTree().CurrentScene.AddChild(bomb);
+    }
+    public void TakeDamage(int amount)
+    {
+        if (invincibleTimer < 0 || invincibleTimer == 0 )
+        {
+            health -= amount; // 扣血
+            GD.Print($"Player took {amount} damage! Current health: {health}");
+
+            if (health <= 0)
+            {
+                Die();
+            }
+
+            invincibleTimer = invincibleDuration;
+        }
+    }
+
+    private void Die()
+    {
+        GD.Print("Player died!");
+        QueueFree(); // 删除玩家节点
+    }
+
+    private void Invincibility(double delta) // 无敌时间控制
+    {
+        if (invincibleTimer > 0)
+        {
+            invincibleTimer-=(float)delta;
+            // 无敌时间人物闪烁
+            if (Mathf.FloorToInt(invincibleTimer * 10) % 2 == 0)
+                Visible = true;
+            else
+                Visible = false;
+        }
+        else
+        {
+            Visible = true; // 计时结束，恢复正常
+        }
     }
 }

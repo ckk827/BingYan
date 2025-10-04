@@ -1,0 +1,119 @@
+[gd_scene load_steps=18 format=3 uid="uid://dr2qtqv7cv1dp"]
+
+[ext_resource type="Script" uid="uid://ci6mn2v3e384s" path="res://scenes/enemy/EnemyNerve.cs" id="1_kfbta"]
+[ext_resource type="Texture2D" uid="uid://bvtpr0ikcq45d" path="res://以撒全贴图/怪物/重生，胎衣，胎衣+/monster_231_nerveending1111.png" id="2_xwg18"]
+[ext_resource type="Texture2D" uid="uid://bk2no0y1kru7e" path="res://以撒全贴图/怪物/重生，胎衣，胎衣+/monster_231_nerveending2.png" id="3_w6tsc"]
+[ext_resource type="Texture2D" uid="uid://cy7mtdewcybgw" path="res://以撒全贴图/怪物/重生，胎衣，胎衣+/monster_231_nerveending.png" id="4_wa1us"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h5rn"]
+atlas = ExtResource("2_xwg18")
+region = Rect2(0, 0, 33, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvx6q"]
+atlas = ExtResource("2_xwg18")
+region = Rect2(33, 0, 33, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqwws"]
+atlas = ExtResource("3_w6tsc")
+region = Rect2(70, 55, 35, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5par0"]
+atlas = ExtResource("2_xwg18")
+region = Rect2(110, 0, 55, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wney8"]
+atlas = ExtResource("4_wa1us")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt7o3"]
+atlas = ExtResource("4_wa1us")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euvpa"]
+atlas = ExtResource("4_wa1us")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsty1"]
+atlas = ExtResource("4_wa1us")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw6br"]
+atlas = ExtResource("4_wa1us")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0u0g"]
+atlas = ExtResource("4_wa1us")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_08h4q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h5rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvx6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqwws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5par0")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wney8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt7o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euvpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsty1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw6br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0u0g")
+}],
+"loop": true,
+"name": &"live",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eeq2r"]
+radius = 7.0
+height = 36.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5l7og"]
+radius = 17.0
+height = 92.0
+
+[node name="enemyNerve" type="CharacterBody2D"]
+script = ExtResource("1_kfbta")
+health = 1
+CanMove = false
+
+[node name="EnemyAnim" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_08h4q")
+animation = &"live"
+frame_progress = 0.28928933
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 18)
+shape = SubResource("CapsuleShape2D_eeq2r")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_5l7og")

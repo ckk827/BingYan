@@ -1,10 +1,74 @@
-[gd_scene load_steps=2 format=3 uid="uid://rnmaq84jt18l"]
+[gd_scene load_steps=10 format=3 uid="uid://rnmaq84jt18l"]
 
-[ext_resource type="Script" uid="uid://8yi1s2idxr7f" path="res://Bomb.cs" id="1_4kkau"]
+[ext_resource type="Script" uid="uid://8yi1s2idxr7f" path="res://scripts/Bomb.cs" id="1_4kkau"]
+[ext_resource type="Texture2D" uid="uid://bp75cb8peokxn" path="res://以撒全贴图/子弹&炸弹/bomb.png" id="2_84slv"]
+[ext_resource type="Texture2D" uid="uid://cvjk5dsx56t18" path="res://以撒全贴图/子弹&炸弹/bomb2.png" id="3_nxi8k"]
+[ext_resource type="Texture2D" uid="uid://de7rl514s86ht" path="res://以撒全贴图/人物/表人物/tears.png" id="4_1hf1o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56fam"]
+atlas = ExtResource("4_1hf1o")
+region = Rect2(61, 61, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lqhf"]
+atlas = ExtResource("4_1hf1o")
+region = Rect2(122, 61, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nxw5"]
+atlas = ExtResource("4_1hf1o")
+region = Rect2(0, 122, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3s2y"]
+atlas = ExtResource("4_1hf1o")
+region = Rect2(61, 122, 61, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nocn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_84slv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nxi8k")
+}],
+"loop": true,
+"name": &"ExplodingBomb",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_84slv")
+}],
+"loop": true,
+"name": &"bomb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56fam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lqhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nxw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3s2y")
+}],
+"loop": false,
+"name": &"boom",
+"speed": 5.0
+}]
 
 [node name="Bomb" type="Area2D"]
+position = Vector2(2, 0)
 script = ExtResource("1_4kkau")
-
-[node name="bomb" type="Sprite2D" parent="."]
+explodeR = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="bomb" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_3nocn")
+animation = &"bomb"
+frame_progress = 0.4016032
