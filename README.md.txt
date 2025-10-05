@@ -32,5 +32,13 @@
 - style: 
 - test:
 - chore: 
+### 2025-10-5
+- feat: 创建了由多个房间组成的地图，添加了门的完整逻辑，添加了在不同房间的摄像机逻辑与开关门逻辑
+- fix: 
+- docs:开发日志更新 
+- refactor: 
+- style: 
+- test:
+- chore: 
 
 

@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://jxv5f5xtk4o6"]
+
+[ext_resource type="PackedScene" uid="uid://d2gj446y0ft4p" path="res://scenes/player.tscn" id="1_lkoyb"]
+[ext_resource type="PackedScene" uid="uid://cav8yf7r72mye" path="res://scenes/room.tscn" id="2_kbynm"]
+
+[node name="root" type="Node2D"]
+
+[node name="Maps" type="Node2D" parent="."]
+
+[node name="room2" parent="Maps" instance=ExtResource("2_kbynm")]
+position = Vector2(817, 544)
+RoomSize = Vector2(1280, 800)
+EnemyCount = 0
+ObstacleCount = 0
+BottomDoorEnabled = false
+BottomDoorOpen = false
+RightDoorEnabled = false
+RightDoorOpen = false
+LeftDoorTargetRoomPath = NodePath("../room4")
+RightDoorTargetRoomPath = NodePath("../room3")
+TopDoorTargetRoomPath = NodePath("../room")
+
+[node name="room" parent="Maps" instance=ExtResource("2_kbynm")]
+position = Vector2(817, -537)
+
+[node name="room3" parent="Maps" instance=ExtResource("2_kbynm")]
+position = Vector2(2449, 540)
+
+[node name="room4" parent="Maps" instance=ExtResource("2_kbynm")]
+position = Vector2(-817, 544)
+
+[node name="room5" parent="Maps" instance=ExtResource("2_kbynm")]
+position = Vector2(816, -1621)
+
+[node name="room6" parent="Maps" instance=ExtResource("2_kbynm")]
+position = Vector2(-818, 1630)
+
+[node name="room7" parent="Maps" instance=ExtResource("2_kbynm")]
+position = Vector2(2450, 1628)
+EnemyScenes = Array[PackedScene]([])
+ObstacleScenes = Array[PackedScene]([])
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(378, 322)
+scale = Vector2(1.9326925, 1.8711538)
+offset = Vector2(0, 34.465)
+zoom = Vector2(0.91, 0.75)
+limit_left = 190
+limit_top = 187
+limit_right = 1470
+limit_bottom = 827
+
+[node name="player" parent="." instance=ExtResource("1_lkoyb")]
+position = Vector2(822, 567)
+scale = Vector2(1.9326925, 1.8711538)

@@ -3,44 +3,44 @@
   "WorkspaceRootPath": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\spawnpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\spawnpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Spike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\Spike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\enemy\\enemyredfly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\enemy\\enemyredfly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\bomb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\bomb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\stone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\stone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\enemy\\enemybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\enemy\\enemybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\door.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\door.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\door.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\door.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\enemy\\enemyredfly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\enemy\\enemyredfly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\stone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\stone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\spawnpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\spawnpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\bomb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\bomb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\enemy\\enemybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\enemy\\enemybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\tear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\tear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|c:\\yisa\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\spike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA1A7DE-6EA9-4B49-9654-8D3B6F29776E}|\u4EE5\u6492\u7684\u7ED3\u5408.csproj|solutionrelative:scripts\\spike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,8 +50,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Room.cs",
+              "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Room.cs",
+              "RelativeDocumentMoniker": "scripts\\Room.cs",
+              "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Room.cs",
+              "RelativeToolTip": "scripts\\Room.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAADwv04AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T10:27:21.663Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Door.cs",
+              "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Door.cs",
+              "RelativeDocumentMoniker": "scripts\\Door.cs",
+              "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Door.cs*",
+              "RelativeToolTip": "scripts\\Door.cs*",
+              "ViewState": "AgIAABEAAAAAAAAAAADwvzAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T11:52:53.69Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -62,33 +90,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Spike.cs",
-              "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Spike.cs",
-              "RelativeDocumentMoniker": "scripts\\Spike.cs",
-              "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Spike.cs",
-              "RelativeToolTip": "scripts\\Spike.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T06:21:18.387Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "EnemyRedFly.cs",
               "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\enemy\\EnemyRedFly.cs",
               "RelativeDocumentMoniker": "scripts\\enemy\\EnemyRedFly.cs",
               "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\enemy\\EnemyRedFly.cs",
               "RelativeToolTip": "scripts\\enemy\\EnemyRedFly.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-05T06:11:56.469Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Stone.cs",
               "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Stone.cs",
               "RelativeDocumentMoniker": "scripts\\Stone.cs",
@@ -101,54 +116,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "SpawnPoints.cs",
               "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\SpawnPoints.cs",
               "RelativeDocumentMoniker": "scripts\\SpawnPoints.cs",
-              "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\SpawnPoints.cs*",
-              "RelativeToolTip": "scripts\\SpawnPoints.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
+              "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\SpawnPoints.cs",
+              "RelativeToolTip": "scripts\\SpawnPoints.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-04T16:16:22.186Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Room.cs",
-              "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Room.cs",
-              "RelativeDocumentMoniker": "scripts\\Room.cs",
-              "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Room.cs",
-              "RelativeToolTip": "scripts\\Room.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T10:27:21.663Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "EnemyBase.cs",
               "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\enemy\\EnemyBase.cs",
               "RelativeDocumentMoniker": "scripts\\enemy\\EnemyBase.cs",
               "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\enemy\\EnemyBase.cs",
               "RelativeToolTip": "scripts\\enemy\\EnemyBase.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAIwD0AAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-04T03:19:09.897Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Door.cs",
-              "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Door.cs",
-              "RelativeDocumentMoniker": "scripts\\Door.cs",
-              "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Door.cs",
-              "RelativeToolTip": "scripts\\Door.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "Spike.cs",
+              "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Spike.cs",
+              "RelativeDocumentMoniker": "scripts\\Spike.cs",
+              "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Spike.cs",
+              "RelativeToolTip": "scripts\\Spike.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T11:52:53.69Z",
+              "WhenOpened": "2025-10-05T06:21:18.387Z",
               "EditorCaption": ""
             },
             {
@@ -166,28 +168,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Bomb.cs",
               "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Bomb.cs",
               "RelativeDocumentMoniker": "scripts\\Bomb.cs",
               "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Bomb.cs",
               "RelativeToolTip": "scripts\\Bomb.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAuwEMAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswEMAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-04T03:20:00.274Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Player.cs",
               "RelativeDocumentMoniker": "scripts\\Player.cs",
               "ToolTip": "C:\\YISA\\\u4EE5\u6492\u7684\u7ED3\u5408\\scripts\\Player.cs",
               "RelativeToolTip": "scripts\\Player.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAmwAgAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T16:08:14.034Z"
+              "WhenOpened": "2025-10-02T16:08:14.034Z",
+              "EditorCaption": ""
             }
           ]
         }

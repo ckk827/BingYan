@@ -1,10 +1,93 @@
-[gd_scene load_steps=2 format=3 uid="uid://daq0qhjveg7h6"]
+[gd_scene load_steps=12 format=3 uid="uid://daq0qhjveg7h6"]
 
 [ext_resource type="Script" uid="uid://o4ya1jw7p1o5" path="res://scripts/Door.cs" id="1_hpvv5"]
+[ext_resource type="Texture2D" uid="uid://nub7e8oys7x3" path="res://以撒全贴图/门/door_down_closed.png" id="2_kgbum"]
+[ext_resource type="Texture2D" uid="uid://dlckhmrc60jvs" path="res://以撒全贴图/门/door_down_open.png" id="3_pg2b6"]
+[ext_resource type="Texture2D" uid="uid://rdf8lu50jmq2" path="res://以撒全贴图/门/door_left_closed.png" id="4_ey00f"]
+[ext_resource type="Texture2D" uid="uid://ew4v25e6u0wa" path="res://以撒全贴图/门/door_left_open.png" id="5_4ayau"]
+[ext_resource type="Texture2D" uid="uid://d0df81jm1w21p" path="res://以撒全贴图/门/door_right_closed.png" id="6_41c0y"]
+[ext_resource type="Texture2D" uid="uid://xgdei2nmncnn" path="res://以撒全贴图/门/door_right_open.png" id="7_j2w5t"]
+[ext_resource type="Texture2D" uid="uid://1ocow51waq7e" path="res://以撒全贴图/门/door_top_closed.png" id="8_kgbum"]
+[ext_resource type="Texture2D" uid="uid://cc58awbggqv2v" path="res://以撒全贴图/门/door_top_open.png" id="9_pg2b6"]
 
-[node name="door" type="StaticBody2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dmmdo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kgbum")
+}],
+"loop": true,
+"name": &"DoorBottomClose",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pg2b6")
+}],
+"loop": true,
+"name": &"DoorBottomOpen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ey00f")
+}],
+"loop": true,
+"name": &"DoorLeftClose",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4ayau")
+}],
+"loop": true,
+"name": &"DoorLeftOpen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_41c0y")
+}],
+"loop": true,
+"name": &"DoorRightClose",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_j2w5t")
+}],
+"loop": true,
+"name": &"DoorRightOpen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_kgbum")
+}],
+"loop": true,
+"name": &"DoorTopClose",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_pg2b6")
+}],
+"loop": true,
+"name": &"DoorTopOpen",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8m42n"]
+radius = 74.00676
+
+[node name="door" type="Area2D"]
 script = ExtResource("1_hpvv5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -1)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_dmmdo")
+animation = &"DoorTopOpen"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8m42n")

@@ -9,6 +9,7 @@ public partial class EnemyBase : CharacterBody2D
     [Export] public int ContactDamage = 1;           // 碰撞伤害数值
     [Export] public bool CanMove = true; //控制是否移动
 
+    public static event Action<EnemyBase> OnEnemyDied;  //敌人死亡事件，用于统计房间敌人死亡数量
 
     private AnimatedSprite2D EnemyAnim; // 敌人动画
 
@@ -52,6 +53,7 @@ public partial class EnemyBase : CharacterBody2D
         EnableContactDamage = false;
         CanMove = false;         
         Velocity = Vector2.Zero; // 清空速度
+        OnEnemyDied?.Invoke(this);
     }
     private void OnBodyEntered(Node2D body)
     {
