@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://rnmaq84jt18l"]
+[gd_scene load_steps=11 format=3 uid="uid://rnmaq84jt18l"]
 
 [ext_resource type="Script" uid="uid://8yi1s2idxr7f" path="res://scripts/Bomb.cs" id="1_4kkau"]
 [ext_resource type="Texture2D" uid="uid://bp75cb8peokxn" path="res://以撒全贴图/子弹&炸弹/bomb.png" id="2_84slv"]
@@ -60,15 +60,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_84slv"]
+radius = 9.75
+
 [node name="Bomb" type="Area2D"]
 position = Vector2(2, 0)
+collision_layer = 16
+collision_mask = 7
 script = ExtResource("1_4kkau")
 explodeR = 200.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="bomb" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_3nocn")
 animation = &"bomb"
 frame_progress = 0.4016032
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_84slv")

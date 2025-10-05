@@ -97,8 +97,8 @@ radius = 16.0
 height = 130.0
 
 [node name="enemyNerve" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 3
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_kfbta")
 health = 1
 CanMove = false

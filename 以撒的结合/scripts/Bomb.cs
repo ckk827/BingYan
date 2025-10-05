@@ -3,7 +3,7 @@ using System;
 
 public partial class Bomb : Area2D
 {
-    [Export] public float BombDelay=2f;
+    [Export] public float BombDelay = 2f;
     [Export] public float explodeR = 50f;
     [Export] public int damage = 1;
 
@@ -22,7 +22,7 @@ public partial class Bomb : Area2D
     {
         if (exploded) return;
 
-        BombDelay-=(float)delta;
+        BombDelay -= (float)delta;
         if (BombDelay > 1 && !animPlayed)
             bomb.Play("bomb");
         if (BombDelay < 1 && !animPlayed)
@@ -30,7 +30,7 @@ public partial class Bomb : Area2D
             bomb.Play("ExplodingBomb");
             animPlayed = true;
         }
-        if (BombDelay<0)
+        if (BombDelay < 0)
         {
             Explode();
         }
@@ -62,10 +62,10 @@ public partial class Bomb : Area2D
             GD.Print($"Explosion collided with: {obj.Name}");
             // 5️⃣ 判断对象是否可以被伤害
             string nodeName = obj.Name.ToString();      // 将Godot的StringName转换成C#的string
-            if (nodeName == "player" || nodeName.StartsWith("enemy"))
+            if (nodeName == "player" || nodeName.StartsWith("enemy") || obj is Stone)
             {
                 GD.Print($"{obj.Name} taking {damage} damage");
-                obj.Call("TakeDamage", damage);        
+                obj.Call("TakeDamage", damage);
             }
         }
 

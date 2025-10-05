@@ -1,15 +1,18 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class SpawnPoints : Node2D
 {
-    [Export] public PackedScene[] EnemyScenes;   // 敌人预制体数组
-    [Export] public PackedScene[] ObstacleScenes; // 障碍物预制体数组
-    [Export] public int EnemyCount = 3;          // 生成的敌人数
-    [Export] public int ObstacleCount = 2;       // 生成的障碍数量
-    [Export] public Rect2 SpawnArea = new Rect2(-100, -100, 200, 200); // 随机范围（相对位置）
+    [Export] public PackedScene[] EnemyScenes;
+    [Export] public PackedScene[] ObstacleScenes;
+    [Export] public int EnemyCount = 3;
+    [Export] public int ObstacleCount = 2;
+    [Export] public Rect2 SpawnArea = new Rect2(-100, -100, 200, 200);
+    [Export] public float minDistance = 50f; // 最小间距，防止重叠
 
     private Random random = new Random();
+    private List<Vector2> occupiedPositions = new List<Vector2>();
 
     public override void _Ready()
     {
@@ -22,9 +25,8 @@ public partial class SpawnPoints : Node2D
         if (body is Player)
         {
             GD.Print("玩家进入房间，开始生成敌人和障碍物");
+            CallDeferred(nameof(SpawnObstacles), ObstacleCount);
             CallDeferred(nameof(SpawnEnemy), EnemyCount);
-            CallDeferred(nameof(SpawnObstacle), EnemyCount);
-            
         }
     }
 
@@ -34,32 +36,55 @@ public partial class SpawnPoints : Node2D
 
         for (int i = 0; i < MaxEnemyNum; i++)
         {
-            Vector2 pos = new Vector2(random.Next(-600, 600), random.Next(-300, 300));
-
+            Vector2 pos = GetNonOverlappingPosition();
             var scene = EnemyScenes[random.Next(EnemyScenes.Length)];
-            var enemy = scene.Instantiate<Node2D>();
+            var enemy = scene.Instantiate<CharacterBody2D>();
             enemy.Position = pos;
-
+            enemy.Name = $"enemy_{i}";
             GetParent().AddChild(enemy);
+            occupiedPositions.Add(pos);
         }
     }
 
-    private void SpawnObstacle()
+    private void SpawnObstacles(int MaxObstacleNum)
     {
-        for (int i = 0; i < ObstacleCount; i++)
+        if (ObstacleScenes.Length == 0) return;
+
+        for (int i = 0; i < MaxObstacleNum; i++)
         {
-            if (ObstacleScenes.Length == 0) return;
+            Vector2 pos = GetNonOverlappingPosition();
             var scene = ObstacleScenes[random.Next(ObstacleScenes.Length)];
             var obstacle = scene.Instantiate<Node2D>();
-            obstacle.Position = GetRandomPosition();
+            obstacle.Position = pos;
+            obstacle.Name = "stone";
             GetParent().AddChild(obstacle);
+            occupiedPositions.Add(pos);
         }
     }
 
-    private Vector2 GetRandomPosition()
+    private Vector2 GetNonOverlappingPosition()
     {
-        float x = (float)(random.NextDouble() * SpawnArea.Size.X + SpawnArea.Position.X);
-        float y = (float)(random.NextDouble() * SpawnArea.Size.Y + SpawnArea.Position.Y);
-        return Position + new Vector2(x, y); // 相对于 SpawnPoint 的位置
+        Vector2 pos;
+        int tries = 0;
+        do
+        {
+            float x = (float)(random.NextDouble() * SpawnArea.Size.X + SpawnArea.Position.X);
+            float y = (float)(random.NextDouble() * SpawnArea.Size.Y + SpawnArea.Position.Y);
+            pos = Position + new Vector2(x, y);
+            tries++;
+            if (tries > 100) break; // 防卡死
+        } 
+        while (IsOverlapping(pos));
+        return pos;
+    }
+
+    private bool IsOverlapping(Vector2 pos)
+    {
+        foreach (var p in occupiedPositions)
+        {
+            if (pos.DistanceTo(p) < minDistance)
+                return true;
+        }
+        return false;
     }
 }

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://0vtrsg0at013"]
+
+[ext_resource type="Script" uid="uid://byodldg4wxj7r" path="res://scripts/Spike.cs" id="1_7a7y0"]
+[ext_resource type="Texture2D" uid="uid://cfwya1o2ftl5n" path="res://以撒全贴图/spike.png" id="2_d2mqm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cx2lw"]
+size = Vector2(38.5, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_60m7a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d2mqm")
+}],
+"loop": true,
+"name": &"spike",
+"speed": 5.0
+}]
+
+[node name="spike" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_7a7y0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 0)
+shape = SubResource("RectangleShape2D_cx2lw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_60m7a")
+animation = &"spike"

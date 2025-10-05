@@ -50,8 +50,8 @@ radius = 15.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_lmguu"]
 
 [node name="enemyRedFly" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_4fkgf")
 health = 1
 
