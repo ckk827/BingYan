@@ -15,12 +15,26 @@ public partial class EnemyBase : CharacterBody2D
 
     private Area2D hitbox;
 
+    public DropItem[] DropTable;
+
+
+    public class DropItem // 掉落
+    {
+        public PickupType Type;
+        public float Chance; // 0~1之间的概率
+
+        public DropItem(PickupType type, float chance)
+        {
+            Type = type;
+            Chance = chance;
+        }
+    }
 
     public override void _Ready()
     {
         EnemyAnim = GetNode<AnimatedSprite2D>("EnemyAnim");
         EnemyAnim.Play("live");
-        // 如果子类场景有 Hitbox，就取出来
+
         if (HasNode("HitBox"))
         {
             hitbox = GetNode<Area2D>("HitBox");

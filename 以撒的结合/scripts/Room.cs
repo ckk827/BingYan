@@ -173,7 +173,7 @@ public partial class Room : Node2D
             }
             else
             {
-                GD.Print($"⚠️ 节点 {node.Name} 不是 Door 类型");
+                GD.Print($" 节点 {node.Name} 不是 Door 类型");
             }
         }
     }

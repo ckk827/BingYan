@@ -13,6 +13,9 @@ public partial class Player : CharacterBody2D
     [Export] public float invincibleDuration = 1f;
     [Export] private PackedScene tearScene;
     [Export] private PackedScene bombScene;
+    [Export] public int bombCount = 1; // 玩家拥有的炸弹数
+    [Export] public int keyCount = 0;
+
     
 
     //private string currentDir = "Down";
@@ -120,23 +123,28 @@ public partial class Player : CharacterBody2D
     }
     private void HandleBomb(double delta)
     {
-        if (bombTimer > 0)
-            bombTimer -= (float)delta;
-        else
+       if (bombTimer > 0)
+        bombTimer -= (float)delta;
+       else
+    {
+        // 判断是否还有可用炸弹
+        if (Input.IsActionPressed("bomb") && bombCount > 0)
         {
-            if (Input.IsActionPressed("bomb"))
-            {
-                Bomb();
-                bombTimer = bombCD;
-            }
+            Bomb();
+            bombTimer = bombCD;
         }
     }
-    private void Bomb()
-    {
-        var bomb = (Bomb)bombScene.Instantiate();
-        bomb.GlobalPosition = GlobalPosition; ;
-        GetTree().CurrentScene.AddChild(bomb);
     }
+    private void Bomb()
+{
+    var bomb = (Bomb)bombScene.Instantiate();
+    bomb.GlobalPosition = GlobalPosition;
+
+    // 放置炸弹时减少数量
+    bombCount--;
+
+    GetTree().CurrentScene.AddChild(bomb);
+}
     public void TakeDamage(int amount)
     {
         if (invincibleTimer < 0 || invincibleTimer == 0 )

@@ -48,6 +48,15 @@
 - style: 
 - test:
 - chore: 
+### 2025-10-6
+- feat: 添加了三种掉落物。添加了炸弹数量限制。添加了敌人死亡掉落掉落物的逻辑
+- fix: 
+- docs:开发日志更新 
+- refactor: 
+- style: 
+- test:
+- chore: 
+
 
 
 

@@ -414,6 +414,7 @@ moveSpeed = 500.0
 health = 19
 tearScene = ExtResource("2_tuyoq")
 bombScene = ExtResource("3_fjrip")
+bombCount = 3
 
 [node name="feet" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 6)

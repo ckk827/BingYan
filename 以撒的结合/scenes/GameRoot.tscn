@@ -92,6 +92,10 @@ RightDoorEnabled = false
 RightDoorOpen = false
 TopDoorTargetRoomPath = NodePath("../room3")
 
+[node name="player" parent="." instance=ExtResource("1_lkoyb")]
+position = Vector2(822, 567)
+scale = Vector2(1.9326925, 1.8711538)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(378, 322)
 scale = Vector2(1.9326925, 1.8711538)
@@ -101,7 +105,3 @@ limit_left = 190
 limit_top = 187
 limit_right = 1470
 limit_bottom = 827
-
-[node name="player" parent="." instance=ExtResource("1_lkoyb")]
-position = Vector2(822, 567)
-scale = Vector2(1.9326925, 1.8711538)

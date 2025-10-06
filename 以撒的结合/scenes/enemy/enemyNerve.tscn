@@ -100,6 +100,8 @@ height = 130.0
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_kfbta")
+HeartPercent = 0.5
+BombPercent = 0.2
 health = 1
 CanMove = false
 

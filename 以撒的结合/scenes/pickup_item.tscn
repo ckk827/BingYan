@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2pycpowuy4r2"]
+
+[ext_resource type="Script" uid="uid://bx2ntfcvf271n" path="res://scripts/PickupItem.cs" id="1_8130n"]
+[ext_resource type="Texture2D" uid="uid://bp75cb8peokxn" path="res://以撒全贴图/子弹&炸弹/bomb.png" id="2_s4gpa"]
+[ext_resource type="Texture2D" uid="uid://byeop85ehn4rn" path="res://以撒全贴图/基础掉落/心/heart.png" id="3_takdo"]
+[ext_resource type="Texture2D" uid="uid://dl7c6pn86d4js" path="res://以撒全贴图/基础掉落/钥匙/pickup_003_key.png" id="4_du5dg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh6jf"]
+atlas = ExtResource("4_du5dg")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnkii"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s4gpa")
+}],
+"loop": true,
+"name": &"Bomb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_takdo")
+}],
+"loop": true,
+"name": &"Heart",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh6jf")
+}],
+"loop": true,
+"name": &"Key",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ygl1u"]
+radius = 16.03122
+
+[node name="PickupItem" type="Area2D"]
+script = ExtResource("1_8130n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 4.7683716e-07)
+scale = Vector2(1.7864585, 1.6250001)
+sprite_frames = SubResource("SpriteFrames_hnkii")
+animation = &"Bomb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_ygl1u")

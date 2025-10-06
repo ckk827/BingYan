@@ -10,6 +10,7 @@ public partial class SpawnPoints : Node2D
     [Export] public int ObstacleCount = 2;
     [Export] public Rect2 SpawnArea = new Rect2(-100, -100, 200, 200);
     [Export] public float minDistance = 50f; // 最小间距，防止重叠
+    [Export] public PackedScene PickupScene;
 
     private Random random = new Random();
     private List<Vector2> occupiedPositions = new List<Vector2>();
@@ -47,12 +48,15 @@ public partial class SpawnPoints : Node2D
         {
             Vector2 pos = GetNonOverlappingPosition();
             var scene = EnemyScenes[random.Next(EnemyScenes.Length)];
-            var enemy = scene.Instantiate<EnemyBase>(); // ✅ 这里用 EnemyBase
+            var enemy = scene.Instantiate<EnemyBase>();
             enemy.Position = pos;
             enemy.Name = $"enemy_{i}";
 
-            // ✅ 绑定事件
-            enemy.OnEnemyDied += parentRoom.OnEnemyDied;
+            enemy.OnEnemyDied += (EnemyBase e) =>
+            {
+                parentRoom.OnEnemyDied(e);     // 房间计数
+                HandleEnemyDrop(e);             // 掉落物生成
+            };
 
             parentRoom.AddChild(enemy);
             occupiedPositions.Add(pos);
@@ -101,5 +105,32 @@ public partial class SpawnPoints : Node2D
         }
         return false;
     }
+    private void HandleEnemyDrop(EnemyBase enemy)
+    {
+        if (PickupScene == null || enemy.DropTable == null) return;
 
+        foreach (var drop in enemy.DropTable)
+        {
+            if (random.NextDouble() < drop.Chance)
+            {
+                var pickup = PickupScene.Instantiate<PickupItem>();
+                pickup.Type = drop.Type;
+
+               //  保证掉落物不重叠
+                Vector2 pos = GetNonOverlappingPosition();
+                //Vector2 pos = enemy.GlobalPosition;
+                //Vector2 pos = GetParent().ToLocal(enemy.GlobalPosition);
+                //pickup.Position = pos;
+                //if (pos == null) GD.Print("掉落物：敌人坐标获取失败");
+                //else GD.Print("掉落物：敌人坐标获取成功");
+                 pickup.Position = pos;
+
+               // GetParent().AddChild(pickup);
+                GetParent().CallDeferred("add_child", pickup);
+                occupiedPositions.Add(pos);
+
+                GD.Print($"生成掉落物 {drop.Type} 在 {pos}");
+            }
+        }
+    }
 }

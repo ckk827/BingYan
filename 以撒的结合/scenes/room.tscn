@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cav8yf7r72mye"]
+[gd_scene load_steps=16 format=4 uid="uid://cav8yf7r72mye"]
 
 [ext_resource type="Script" uid="uid://b1373spnb0wad" path="res://scripts/Room.cs" id="1_ffxv4"]
 [ext_resource type="PackedScene" uid="uid://daq0qhjveg7h6" path="res://scenes/door.tscn" id="2_85yof"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cecyfo63lx6r7" path="res://scenes/enemy/enemyRedFly.tscn" id="5_7dqbv"]
 [ext_resource type="PackedScene" uid="uid://jmp5vdtorgsh" path="res://scenes/stone.tscn" id="6_7dqbv"]
 [ext_resource type="PackedScene" uid="uid://0vtrsg0at013" path="res://scenes/spike.tscn" id="7_ybpoa"]
+[ext_resource type="PackedScene" uid="uid://b2pycpowuy4r2" path="res://scenes/pickup_item.tscn" id="9_qtoah"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_14vil"]
 texture = ExtResource("3_85yof")
@@ -1851,6 +1852,7 @@ EnemyCount = 10
 ObstacleCount = 5
 SpawnArea = Rect2(-500, -300, 1000, 600)
 minDistance = 100.0
+PickupScene = ExtResource("9_qtoah")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 position = Vector2(-2, 0)
