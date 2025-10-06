@@ -16,29 +16,50 @@ public partial class Door : Area2D
     {
         doorAnim = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
         doorCollider = GetNodeOrNull<CollisionShape2D>("CollisionShape2D");
-
+        GD.Print($"[{Name}] Door Ready: anim={doorAnim != null}, collider={doorCollider != null}");
         BodyEntered += OnPlayerEntered;
-       // UpdateDoorAppearance();
+
+
+            // UpdateDoorAppearance();
+        
     }
-    private void UpdateDoorAppearance()
+    public void UpdateDoorAppearance()
     {
+        GD.Print($"[{Name}] UpdateDoorAppearance: IsEnabled={IsEnabled}, IsOpen={IsOpen}");
+
         if (!IsEnabled)
         {
+            GD.Print($"[{Name}] 门被禁用，不显示。");
             Visible = false;
             if (doorCollider != null)
                 doorCollider.Disabled = true;
             return;
         }
+
         Visible = true;
+
         if (doorAnim != null)
         {
             string anim = IsOpen ? $"Door{DoorName}Open" : $"Door{DoorName}Close";
+            GD.Print($"[{Name}] 播放动画: {anim}");
             doorAnim.Play(anim);
+        }
+        else
+        {
+            GD.Print($"[{Name}] doorAnim 为空！");
         }
 
         if (doorCollider != null)
+        {
             doorCollider.Disabled = !IsEnabled || !IsOpen;
+            GD.Print($"[{Name}] 碰撞体状态: Disabled={doorCollider.Disabled}");
+        }
+        else
+        {
+            GD.Print($"[{Name}] doorCollider 为空！");
+        }
     }
+
     public void Open()
     {
         IsOpen = true;
@@ -52,15 +73,23 @@ public partial class Door : Area2D
     private void OnPlayerEntered(Node body)
     {
         if (!IsEnabled || !IsOpen)
+        {
+            GD.Print($"{Name}: 门未启用或未开启，无法传送");
             return;
+        }
         if (body is not Player player)
+        {
+            GD.Print($"{Name}: 进入的不是玩家");
             return;
-        if (TargetRoomPath == null)
+        }
+        if (TargetRoomPath == null || TargetRoomPath.IsEmpty)
         {
             GD.Print($"{Name}: 没有设置目标房间路径");
             return;
         }
 
+        GD.Print($"{Name}: 当前节点路径 = {GetPath()}");
+        GD.Print($"{Name}: 目标房间路径 = {TargetRoomPath}");
         var targetRoom = GetNodeOrNull<Room>(TargetRoomPath);
 
         if (targetRoom == null)

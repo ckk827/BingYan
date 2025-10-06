@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://jxv5f5xtk4o6"]
+[gd_scene load_steps=7 format=3 uid="uid://jxv5f5xtk4o6"]
 
 [ext_resource type="PackedScene" uid="uid://d2gj446y0ft4p" path="res://scenes/player.tscn" id="1_lkoyb"]
+[ext_resource type="PackedScene" uid="uid://dr2qtqv7cv1dp" path="res://scenes/enemy/enemyNerve.tscn" id="2_653ys"]
 [ext_resource type="PackedScene" uid="uid://cav8yf7r72mye" path="res://scenes/room.tscn" id="2_kbynm"]
+[ext_resource type="PackedScene" uid="uid://cecyfo63lx6r7" path="res://scenes/enemy/enemyRedFly.tscn" id="3_p13ka"]
+[ext_resource type="PackedScene" uid="uid://jmp5vdtorgsh" path="res://scenes/stone.tscn" id="4_it2jm"]
+[ext_resource type="PackedScene" uid="uid://0vtrsg0at013" path="res://scenes/spike.tscn" id="5_foumo"]
 
 [node name="root" type="Node2D"]
 
@@ -10,35 +14,83 @@
 [node name="room2" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(817, 544)
 RoomSize = Vector2(1280, 800)
-EnemyCount = 0
-ObstacleCount = 0
+EnemyScenes = Array[PackedScene]([])
+EnemyCount = 1
+ObstacleCount = 1
 BottomDoorEnabled = false
 BottomDoorOpen = false
-RightDoorEnabled = false
-RightDoorOpen = false
 LeftDoorTargetRoomPath = NodePath("../room4")
 RightDoorTargetRoomPath = NodePath("../room3")
 TopDoorTargetRoomPath = NodePath("../room")
+CameraPath = NodePath("../../Camera2D")
 
 [node name="room" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(817, -537)
+EnemyScenes = Array[PackedScene]([ExtResource("2_653ys"), ExtResource("3_p13ka")])
+ObstacleScenes = Array[PackedScene]([ExtResource("4_it2jm"), ExtResource("5_foumo")])
+EnemyCount = 6
+ObstacleCount = 5
+TopDoorOpen = false
+BottomDoorOpen = false
+LeftDoorEnabled = false
+LeftDoorOpen = false
+RightDoorEnabled = false
+RightDoorOpen = false
+TopDoorTargetRoomPath = NodePath("../room5")
+BottomDoorTargetRoomPath = NodePath("../room2")
+CameraPath = NodePath("../../Camera2D")
 
 [node name="room3" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(2449, 540)
+TopDoorEnabled = false
+TopDoorOpen = false
+RightDoorEnabled = false
+RightDoorOpen = false
+LeftDoorTargetRoomPath = NodePath("../room2")
+BottomDoorTargetRoomPath = NodePath("../room7")
+CameraPath = NodePath("../../Camera2D")
 
 [node name="room4" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(-817, 544)
+TopDoorEnabled = false
+TopDoorOpen = false
+LeftDoorEnabled = false
+LeftDoorOpen = false
+RightDoorTargetRoomPath = NodePath("../room2")
+BottomDoorTargetRoomPath = NodePath("../room6")
 
 [node name="room5" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(816, -1621)
+TopDoorEnabled = false
+TopDoorOpen = false
+LeftDoorEnabled = false
+LeftDoorOpen = false
+RightDoorEnabled = false
+RightDoorOpen = false
+BottomDoorTargetRoomPath = NodePath("../room")
+CameraPath = NodePath("../../Camera2D")
 
 [node name="room6" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(-818, 1630)
+BottomDoorEnabled = false
+BottomDoorOpen = false
+LeftDoorEnabled = false
+LeftDoorOpen = false
+RightDoorEnabled = false
+RightDoorOpen = false
+TopDoorTargetRoomPath = NodePath("../room4")
 
 [node name="room7" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(2450, 1628)
 EnemyScenes = Array[PackedScene]([])
 ObstacleScenes = Array[PackedScene]([])
+BottomDoorEnabled = false
+BottomDoorOpen = false
+LeftDoorEnabled = false
+LeftDoorOpen = false
+RightDoorEnabled = false
+RightDoorOpen = false
+TopDoorTargetRoomPath = NodePath("../room3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(378, 322)

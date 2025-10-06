@@ -14,7 +14,7 @@ public partial class EnemyRedFly : EnemyBase
         EnableContactDamage = true;
 
         // 找到场景中的玩家
-        player = GetTree().Root.GetNode<Player>("Node2D/player");
+        player = GetTree().Root.GetNode<Player>("root/player");
     }
 
     public override void _PhysicsProcess(double delta)

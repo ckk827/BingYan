@@ -1852,23 +1852,6 @@ ObstacleCount = 5
 SpawnArea = Rect2(-500, -300, 1000, 600)
 minDistance = 100.0
 
-[node name="doors" type="Node2D" parent="."]
-
-[node name="DoorTop" parent="doors" instance=ExtResource("2_85yof")]
-position = Vector2(-1, -405)
-
-[node name="DoorLeft" parent="doors" instance=ExtResource("2_85yof")]
-position = Vector2(-676, 2)
-DoorName = "Left"
-
-[node name="DoorRight" parent="doors" instance=ExtResource("2_85yof")]
-position = Vector2(680, 4)
-DoorName = "Right"
-
-[node name="DoorBottom" parent="doors" instance=ExtResource("2_85yof")]
-position = Vector2(-2, 395)
-DoorName = "Bottom"
-
 [node name="PlayerDetector" type="Area2D" parent="."]
 position = Vector2(-2, 0)
 
@@ -1876,3 +1859,20 @@ position = Vector2(-2, 0)
 visible = false
 position = Vector2(-1, -10)
 shape = SubResource("RectangleShape2D_jn645")
+
+[node name="doors" type="Node2D" parent="."]
+
+[node name="DoorTop" parent="doors" groups=["Doors"] instance=ExtResource("2_85yof")]
+position = Vector2(-1, -405)
+
+[node name="DoorLeft" parent="doors" groups=["Doors"] instance=ExtResource("2_85yof")]
+position = Vector2(-676, 2)
+DoorName = "Left"
+
+[node name="DoorBottom" parent="doors" groups=["Doors"] instance=ExtResource("2_85yof")]
+position = Vector2(-2, 395)
+DoorName = "Bottom"
+
+[node name="DoorRight" parent="doors" groups=["Doors"] instance=ExtResource("2_85yof")]
+position = Vector2(680, 4)
+DoorName = "Right"

@@ -13,10 +13,13 @@ public partial class SpawnPoints : Node2D
 
     private Random random = new Random();
     private List<Vector2> occupiedPositions = new List<Vector2>();
+    private Room parentRoom;
+
 
     public override void _Ready()
     {
-        var detector = GetParent().GetNode<Area2D>("PlayerDetector");
+        parentRoom = GetParent<Room>(); // ✅ 获取上级房间
+        var detector = parentRoom.GetNode<Area2D>("PlayerDetector");
         detector.BodyEntered += OnPlayerEntered;
     }
 
@@ -24,10 +27,16 @@ public partial class SpawnPoints : Node2D
     {
         if (body is Player)
         {
-            GD.Print("玩家进入房间，开始生成敌人和障碍物");
-            CallDeferred(nameof(SpawnObstacles), ObstacleCount);
-            CallDeferred(nameof(SpawnEnemy), EnemyCount);
+            //GD.Print("玩家进入房间，开始生成敌人和障碍物");
+            //CallDeferred(nameof(SpawnObstacles), ObstacleCount);
+            //CallDeferred(nameof(SpawnEnemy), EnemyCount);
         }
+    }
+    public void Spawn()
+    {
+        GD.Print("玩家进入房间，开始生成敌人和障碍物");
+        CallDeferred(nameof(SpawnObstacles), ObstacleCount);
+        CallDeferred(nameof(SpawnEnemy), EnemyCount);
     }
 
     private void SpawnEnemy(int MaxEnemyNum)
@@ -38,13 +47,18 @@ public partial class SpawnPoints : Node2D
         {
             Vector2 pos = GetNonOverlappingPosition();
             var scene = EnemyScenes[random.Next(EnemyScenes.Length)];
-            var enemy = scene.Instantiate<CharacterBody2D>();
+            var enemy = scene.Instantiate<EnemyBase>(); // ✅ 这里用 EnemyBase
             enemy.Position = pos;
             enemy.Name = $"enemy_{i}";
-            GetParent().AddChild(enemy);
+
+            // ✅ 绑定事件
+            enemy.OnEnemyDied += parentRoom.OnEnemyDied;
+
+            parentRoom.AddChild(enemy);
             occupiedPositions.Add(pos);
         }
     }
+
 
     private void SpawnObstacles(int MaxObstacleNum)
     {
@@ -73,7 +87,7 @@ public partial class SpawnPoints : Node2D
             pos = Position + new Vector2(x, y);
             tries++;
             if (tries > 100) break; // 防卡死
-        } 
+        }
         while (IsOverlapping(pos));
         return pos;
     }
@@ -87,4 +101,5 @@ public partial class SpawnPoints : Node2D
         }
         return false;
     }
+
 }
