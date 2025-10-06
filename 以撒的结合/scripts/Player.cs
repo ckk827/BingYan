@@ -32,6 +32,9 @@ public partial class Player : CharacterBody2D
     private float bombTimer = 0f;             // 炸弹计时器
     private float invincibleTimer = 0f;             // 无敌时间计时器
 
+    //public event Action OnHealthChanged;
+    //public event Action OnBombCountChanged;
+    //public event Action OnKeyCountChanged;
 
     public override void _Ready()
     {

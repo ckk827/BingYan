@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://jxv5f5xtk4o6"]
+[gd_scene load_steps=8 format=3 uid="uid://jxv5f5xtk4o6"]
 
 [ext_resource type="PackedScene" uid="uid://d2gj446y0ft4p" path="res://scenes/player.tscn" id="1_lkoyb"]
 [ext_resource type="PackedScene" uid="uid://dr2qtqv7cv1dp" path="res://scenes/enemy/enemyNerve.tscn" id="2_653ys"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cecyfo63lx6r7" path="res://scenes/enemy/enemyRedFly.tscn" id="3_p13ka"]
 [ext_resource type="PackedScene" uid="uid://jmp5vdtorgsh" path="res://scenes/stone.tscn" id="4_it2jm"]
 [ext_resource type="PackedScene" uid="uid://0vtrsg0at013" path="res://scenes/spike.tscn" id="5_foumo"]
+[ext_resource type="PackedScene" uid="uid://c2wqxhjc66khk" path="res://scenes/hud.tscn" id="7_p13ka"]
 
 [node name="root" type="Node2D"]
 
@@ -105,3 +106,5 @@ limit_left = 190
 limit_top = 187
 limit_right = 1470
 limit_bottom = 827
+
+[node name="HUD" parent="." instance=ExtResource("7_p13ka")]

@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2wqxhjc66khk"]
+
+[ext_resource type="Script" uid="uid://coo7leiottv1i" path="res://scripts/Hud.cs" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://cfyu1kv23st0d" path="res://以撒全贴图/UI/fullheart.png" id="2_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://bswcbmt7r4b3c" path="res://以撒全贴图/UI/halfheart.png" id="3_047uy"]
+[ext_resource type="Texture2D" uid="uid://qvudoslanjfy" path="res://以撒全贴图/UI/key.png" id="4_5pdws"]
+[ext_resource type="Texture2D" uid="uid://donap431dub72" path="res://以撒全贴图/UI/emptyheart.png" id="4_047uy"]
+[ext_resource type="Texture2D" uid="uid://sajjl2lqrojl" path="res://以撒全贴图/UI/bomb.png" id="5_hd3ao"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0i1j5"]
+
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("HeartsContainer", "KeysContainer", "BombsContainer")]
+scale = Vector2(2.025, 2.025)
+transform = Transform2D(2.025, 0, 0, 2.025, 0, 0)
+script = ExtResource("1_ahhtf")
+HeartsContainer = NodePath("Control/HeartsContainer")
+KeysContainer = NodePath("Control/KeysContainer")
+BombsContainer = NodePath("Control/BombsContainer")
+FullHeart = ExtResource("2_uo2fv")
+HalfHeart = ExtResource("3_047uy")
+EmptyHeart = ExtResource("4_047uy")
+KeyIcon = ExtResource("4_5pdws")
+BombIcon = ExtResource("5_hd3ao")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeartsContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart0" type="TextureRect" parent="Control/HeartsContainer"]
+layout_mode = 2
+
+[node name="Heart1" type="TextureRect" parent="Control/HeartsContainer"]
+layout_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="Control/HeartsContainer"]
+layout_mode = 2
+
+[node name="KeysContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_top = 43.0
+offset_right = 40.0
+offset_bottom = 83.0
+
+[node name="KeyIcon" type="TextureRect" parent="Control/KeysContainer"]
+layout_mode = 2
+
+[node name="KeyLabel" type="Label" parent="Control/KeysContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_0i1j5")
+
+[node name="BombsContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_top = 100.0
+offset_right = 40.0
+offset_bottom = 140.0
+
+[node name="BombIcon" type="TextureRect" parent="Control/BombsContainer"]
+layout_mode = 2
+
+[node name="BombLabel" type="Label" parent="Control/BombsContainer"]
+layout_mode = 2
+
+[node name="EnergyBar" type="ProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = 202.0
+offset_right = 206.0
+offset_bottom = 49.0

@@ -50,7 +50,7 @@ public partial class PickupItem : Area2D
             switch (Type)
             {
                 case PickupType.Heart:
-                    player.health = Math.Min(player.health + 1, 6); // 假设最大血量6
+                    player.health = Math.Min(player.health + 1, 999); // 假设最大血量999
                     GD.Print($"玩家捡到红心，当前血量 {player.health}");
                     break;
                 case PickupType.Bomb:

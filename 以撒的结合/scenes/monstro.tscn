@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8cqlx81i4lib"]
+
+[ext_resource type="Script" uid="uid://b8jofjv1tbmp4" path="res://scripts/Monstro.cs" id="1_opnnd"]
+
+[node name="Monstro" type="CharacterBody2D"]
+script = ExtResource("1_opnnd")
+
+[node name="MonstroAnim" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
