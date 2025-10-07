@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://qamhoycxm3ie"]
+
+[ext_resource type="Script" uid="uid://cptib740q6ajw" path="res://scripts/TearEnemy.cs" id="1_becpt"]
+[ext_resource type="Texture2D" uid="uid://de7rl514s86ht" path="res://以撒全贴图/人物/表人物/tears.png" id="2_eoqbs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xr4r"]
+atlas = ExtResource("2_eoqbs")
+region = Rect2(17, 14, 37, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e25st"]
+atlas = ExtResource("2_eoqbs")
+region = Rect2(61, 0, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfajm"]
+atlas = ExtResource("2_eoqbs")
+region = Rect2(122, 0, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muua3"]
+atlas = ExtResource("2_eoqbs")
+region = Rect2(183, 0, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxwi5"]
+atlas = ExtResource("2_eoqbs")
+region = Rect2(0, 61, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bul1y"]
+atlas = ExtResource("2_eoqbs")
+region = Rect2(61, 61, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sd62"]
+atlas = ExtResource("2_eoqbs")
+region = Rect2(122, 61, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcgyc"]
+atlas = ExtResource("2_eoqbs")
+region = Rect2(0, 122, 61, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnb0w"]
+atlas = ExtResource("2_eoqbs")
+region = Rect2(61, 122, 61, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_138w2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xr4r")
+}],
+"loop": true,
+"name": &"tear",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e25st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfajm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muua3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxwi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bul1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sd62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcgyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnb0w")
+}],
+"loop": false,
+"name": &"tearBoom",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w7kvq"]
+radius = 20.396078
+
+[node name="TearEnemy" type="Area2D"]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_becpt")
+maxDistance = 5000.0
+
+[node name="tear" type="AnimatedSprite2D" parent="."]
+position = Vector2(62, 76)
+scale = Vector2(2.7950819, 3.172131)
+sprite_frames = SubResource("SpriteFrames_138w2")
+animation = &"tearBoom"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(49, 64)
+shape = SubResource("CircleShape2D_w7kvq")

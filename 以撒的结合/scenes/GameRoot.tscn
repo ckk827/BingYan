@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jxv5f5xtk4o6"]
+[gd_scene load_steps=10 format=3 uid="uid://jxv5f5xtk4o6"]
 
 [ext_resource type="PackedScene" uid="uid://d2gj446y0ft4p" path="res://scenes/player.tscn" id="1_lkoyb"]
 [ext_resource type="PackedScene" uid="uid://dr2qtqv7cv1dp" path="res://scenes/enemy/enemyNerve.tscn" id="2_653ys"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cecyfo63lx6r7" path="res://scenes/enemy/enemyRedFly.tscn" id="3_p13ka"]
 [ext_resource type="PackedScene" uid="uid://jmp5vdtorgsh" path="res://scenes/stone.tscn" id="4_it2jm"]
 [ext_resource type="PackedScene" uid="uid://0vtrsg0at013" path="res://scenes/spike.tscn" id="5_foumo"]
+[ext_resource type="PackedScene" uid="uid://b8cqlx81i4lib" path="res://scenes/enemy/monstro.tscn" id="6_it2jm"]
 [ext_resource type="PackedScene" uid="uid://c2wqxhjc66khk" path="res://scenes/hud.tscn" id="7_p13ka"]
+[ext_resource type="PackedScene" uid="uid://co6r1t63nmpm3" path="res://scenes/GameOverScreen.tscn" id="9_foumo"]
 
 [node name="root" type="Node2D"]
 
@@ -15,7 +17,8 @@
 [node name="room2" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(817, 544)
 RoomSize = Vector2(1280, 800)
-EnemyScenes = Array[PackedScene]([])
+EnemyScenes = Array[PackedScene]([ExtResource("2_653ys")])
+ObstacleScenes = Array[PackedScene]([ExtResource("4_it2jm")])
 EnemyCount = 1
 ObstacleCount = 1
 BottomDoorEnabled = false
@@ -43,6 +46,10 @@ CameraPath = NodePath("../../Camera2D")
 
 [node name="room3" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(2449, 540)
+EnemyScenes = Array[PackedScene]([ExtResource("2_653ys"), ExtResource("3_p13ka")])
+ObstacleScenes = Array[PackedScene]([ExtResource("5_foumo")])
+EnemyCount = 5
+ObstacleCount = 5
 TopDoorEnabled = false
 TopDoorOpen = false
 RightDoorEnabled = false
@@ -53,6 +60,9 @@ CameraPath = NodePath("../../Camera2D")
 
 [node name="room4" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(-817, 544)
+EnemyScenes = Array[PackedScene]([ExtResource("3_p13ka"), ExtResource("2_653ys")])
+ObstacleScenes = Array[PackedScene]([ExtResource("4_it2jm")])
+EnemyCount = 4
 TopDoorEnabled = false
 TopDoorOpen = false
 LeftDoorEnabled = false
@@ -62,6 +72,10 @@ BottomDoorTargetRoomPath = NodePath("../room6")
 
 [node name="room5" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(816, -1621)
+EnemyScenes = Array[PackedScene]([ExtResource("6_it2jm")])
+ObstacleScenes = Array[PackedScene]([ExtResource("5_foumo")])
+EnemyCount = 1
+ObstacleCount = 5
 TopDoorEnabled = false
 TopDoorOpen = false
 LeftDoorEnabled = false
@@ -73,6 +87,9 @@ CameraPath = NodePath("../../Camera2D")
 
 [node name="room6" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(-818, 1630)
+EnemyScenes = Array[PackedScene]([ExtResource("3_p13ka")])
+ObstacleScenes = Array[PackedScene]([ExtResource("4_it2jm")])
+EnemyCount = 4
 BottomDoorEnabled = false
 BottomDoorOpen = false
 LeftDoorEnabled = false
@@ -83,8 +100,9 @@ TopDoorTargetRoomPath = NodePath("../room4")
 
 [node name="room7" parent="Maps" instance=ExtResource("2_kbynm")]
 position = Vector2(2450, 1628)
-EnemyScenes = Array[PackedScene]([])
-ObstacleScenes = Array[PackedScene]([])
+EnemyScenes = Array[PackedScene]([ExtResource("3_p13ka")])
+ObstacleScenes = Array[PackedScene]([ExtResource("5_foumo")])
+EnemyCount = 5
 BottomDoorEnabled = false
 BottomDoorOpen = false
 LeftDoorEnabled = false
@@ -108,3 +126,5 @@ limit_right = 1470
 limit_bottom = 827
 
 [node name="HUD" parent="." instance=ExtResource("7_p13ka")]
+
+[node name="GameOverScreen" parent="." instance=ExtResource("9_foumo")]

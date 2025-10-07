@@ -1,0 +1,142 @@
+[gd_scene load_steps=19 format=3 uid="uid://b8cqlx81i4lib"]
+
+[ext_resource type="Script" uid="uid://b8jofjv1tbmp4" path="res://scripts/Monstro.cs" id="1_ugk2o"]
+[ext_resource type="PackedScene" uid="uid://qamhoycxm3ie" path="res://scenes/tear_enemy.tscn" id="2_5wte6"]
+[ext_resource type="Texture2D" uid="uid://dr1ynq5gleb44" path="res://以撒全贴图/boss/23.png" id="3_lpcr0"]
+[ext_resource type="Texture2D" uid="uid://blfadhduxqadf" path="res://以撒全贴图/boss/22.png" id="4_h31bk"]
+[ext_resource type="Texture2D" uid="uid://j23iuigcoasc" path="res://以撒全贴图/boss/2.png" id="5_kxte4"]
+[ext_resource type="Texture2D" uid="uid://cls3gti4m2e2x" path="res://以撒全贴图/boss/5.png" id="6_ppork"]
+[ext_resource type="Texture2D" uid="uid://bdlv2ei6tsm6f" path="res://以撒全贴图/boss/6.png" id="7_13njj"]
+[ext_resource type="Texture2D" uid="uid://dao1287kwx6r6" path="res://以撒全贴图/boss/3.png" id="8_mit5y"]
+[ext_resource type="Texture2D" uid="uid://77whrgmj6fu2" path="res://以撒全贴图/boss/8.png" id="9_3cnra"]
+[ext_resource type="Texture2D" uid="uid://c3x7nyed0fovu" path="res://以撒全贴图/boss/16.png" id="10_bu0ch"]
+[ext_resource type="Texture2D" uid="uid://t1775htknk2o" path="res://以撒全贴图/boss/4.png" id="11_8k5p2"]
+[ext_resource type="Texture2D" uid="uid://cb0wppyu53ei6" path="res://以撒全贴图/boss/7.png" id="12_8xthc"]
+[ext_resource type="Texture2D" uid="uid://c5py2bygayaoo" path="res://以撒全贴图/boss/9.png" id="13_bog32"]
+[ext_resource type="Texture2D" uid="uid://cglsnyyhdr0a2" path="res://以撒全贴图/boss/10.png" id="14_eaevk"]
+[ext_resource type="Texture2D" uid="uid://b78n34oqudthq" path="res://以撒全贴图/boss/1.png" id="15_71j21"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cnfcs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lpcr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lpcr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lpcr0")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_h31bk")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kxte4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ppork")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_13njj")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kxte4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mit5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3cnra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bu0ch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8k5p2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ppork")
+}],
+"loop": true,
+"name": &"jump_windup",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_8xthc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bu0ch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3cnra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_bog32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_eaevk")
+}],
+"loop": true,
+"name": &"land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_71j21")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i267q"]
+radius = 93.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_by3rg"]
+radius = 132.00378
+
+[node name="Monstro" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_ugk2o")
+tearScene = ExtResource("2_5wte6")
+health = 15
+
+[node name="MonstroAnim" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.24999046, 0)
+scale = Vector2(1.723, 1.726)
+sprite_frames = SubResource("SpriteFrames_cnfcs")
+animation = &"die"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13, 132)
+shape = SubResource("CircleShape2D_i267q")
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(-6, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(19, 132)
+shape = SubResource("CircleShape2D_by3rg")

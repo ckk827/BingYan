@@ -25,6 +25,8 @@ public partial class Player : CharacterBody2D
     private AnimatedSprite2D feet; // 脚动画
     private AnimatedSprite2D head; // 头动画
 
+    private GameOverScreen gameOverScreen; // 引用结束UI节点
+
     private Vector2 moveInput = Vector2.Zero;
     private Vector2 facingDirection = Vector2.Down;
 
@@ -39,7 +41,9 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         feet = GetNode<AnimatedSprite2D>("feet"); 
-        head = GetNode<AnimatedSprite2D>("head");
+        head = GetNode<AnimatedSprite2D>("head"); 
+        gameOverScreen = GetParent().GetNode<GameOverScreen>("GameOverScreen");
+        if (gameOverScreen == null) GD.Print("获取结束UI失败");
 
         //确保头显示在脚上
         feet.ZIndex = 0;
@@ -167,7 +171,12 @@ public partial class Player : CharacterBody2D
     private void Die()
     {
         GD.Print("Player died!");
-        QueueFree(); // 删除玩家节点
+        if (gameOverScreen != null)
+        {
+            gameOverScreen.ShowResult(false); 
+        }
+        QueueFree(); 
+        
     }
 
     private void Invincibility(double delta) // 无敌时间控制

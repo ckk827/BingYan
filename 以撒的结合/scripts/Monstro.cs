@@ -10,6 +10,9 @@ public partial class Monstro : EnemyBase
     [Export] public int tearDamage = 1;        // 眼泪伤害
     [Export] public PackedScene tearScene;     // 眼泪场景
 
+    private const float ROOM_WIDTH = 1280f;
+    private const float ROOM_HEIGHT = 640f;
+
     // BOSS状态
     public enum MonstroState
     {
@@ -24,41 +27,69 @@ public partial class Monstro : EnemyBase
 
     private Player player;
     private Timer jumpTimer;
-    private Timer attackTimer;
+    private Timer jumpWindupTimer;
+    private Timer jumpDurationTimer;
+    private Timer landTimer;
+    private Timer hurtTimer;
     private Vector2 jumpTarget;
 
-    // BOSS房间边界
+    private GameOverScreen gameOverScreen; // 引用结束UI节点
+
+
     private Rect2 roomBounds;
 
-    // 动画精灵引用 - 使用EnemyBase中的EnemyAnim
     private AnimatedSprite2D monstroAnim;
 
     public override void _Ready()
     {
-        // 先调用基类的_Ready
-        base._Ready();
-
         // 获取玩家引用
         player = GetTree().Root.GetNode<Player>("root/player");
+        if (player == null)
+        {
+            GD.PrintErr("Monstro: 找不到玩家节点！");
+        }
+        gameOverScreen = GetParent().GetParent().GetParent().GetNode<GameOverScreen>("GameOverScreen");
 
-        // 设置BOSS房间边界（根据你的房间大小调整）
-        roomBounds = new Rect2(GlobalPosition - new Vector2(200, 150), new Vector2(400, 300));
 
-        // 获取动画精灵 - 使用基类中的EnemyAnim
-        monstroAnim = EnemyAnim;
+        SetupRoomBounds();
 
-        // 创建计时器
+        // 获取动画精灵 - 直接获取MonstroAnim节点
+        monstroAnim = GetNode<AnimatedSprite2D>("MonstroAnim");
+        if (monstroAnim == null)
+        {
+            GD.PrintErr("Monstro: 找不到MonstroAnim节点！");
+        }
+
+        // 创建专用计时器
         jumpTimer = new Timer();
         jumpTimer.WaitTime = jumpCooldown;
         jumpTimer.Timeout += StartJumpWindup;
+        jumpTimer.OneShot = false; // 设置为循环计时器
         AddChild(jumpTimer);
-        jumpTimer.Start();
 
-        attackTimer = new Timer();
-        AddChild(attackTimer);
+        jumpWindupTimer = new Timer();
+        jumpWindupTimer.OneShot = true;
+        jumpWindupTimer.Timeout += StartJump;
+        AddChild(jumpWindupTimer);
+
+        jumpDurationTimer = new Timer();
+        jumpDurationTimer.OneShot = true;
+        jumpDurationTimer.Timeout += Land;
+        AddChild(jumpDurationTimer);
+
+        landTimer = new Timer();
+        landTimer.OneShot = true;
+        landTimer.Timeout += ReturnToMoving;
+        AddChild(landTimer);
+
+        hurtTimer = new Timer();
+        hurtTimer.OneShot = true;
+        hurtTimer.Timeout += OnHurtAnimationFinished;
+        AddChild(hurtTimer);
 
         // 初始状态
-        ChangeState(MonstroState.Idle);
+        ChangeState(MonstroState.Moving); // 直接进入移动状态
+        jumpTimer.Start(); // 开始跳跃计时
     }
 
     public override void _PhysicsProcess(double delta)
@@ -97,6 +128,28 @@ public partial class Monstro : EnemyBase
         }
     }
 
+    private void SetupRoomBounds()
+    {
+        // 获取Room节点 
+        Node roomNode = GetParent()?.GetParent();
+
+        if (roomNode != null && roomNode is Node2D room2D)
+        {
+    
+            Vector2 roomPosition = room2D.GlobalPosition;
+            Vector2 offset = new Vector2(ROOM_WIDTH, ROOM_HEIGHT);
+            roomBounds = new Rect2(roomPosition- offset, offset);
+            GD.Print($"Monstro: 使用Room边界 - 位置: {roomPosition}, 尺寸: {ROOM_WIDTH}x{ROOM_HEIGHT}");
+        }
+        else
+        {
+            // 备用方案：使用Monstro的当前位置和默认边界
+            roomBounds = new Rect2(GlobalPosition - new Vector2(ROOM_WIDTH / 2, ROOM_HEIGHT / 2),
+                                 new Vector2(ROOM_WIDTH, ROOM_HEIGHT));
+            GD.PrintErr("Monstro: 无法找到Room节点，使用备用边界");
+        }
+    }
+
     private void ChangeState(MonstroState newState)
     {
         if (CurrentState == newState) return;
@@ -117,9 +170,12 @@ public partial class Monstro : EnemyBase
             case MonstroState.JumpWindup:
                 monstroAnim.Play("jump_windup");
                 // 设置跳跃目标 - 玩家当前位置
-                jumpTarget = player.GlobalPosition;
-                // 确保跳跃目标在房间边界内
-                jumpTarget = jumpTarget.Clamp(roomBounds.Position, roomBounds.End);
+                if (player != null)
+                {
+                    jumpTarget = player.GlobalPosition;
+                    // 确保跳跃目标在房间边界内
+                 //   jumpTarget = jumpTarget.Clamp(roomBounds.Position, roomBounds.End);
+                }
                 break;
 
             case MonstroState.Jumping:
@@ -181,10 +237,9 @@ public partial class Monstro : EnemyBase
 
         ChangeState(MonstroState.JumpWindup);
 
-        // 跳跃前摇结束后开始跳跃
-        attackTimer.WaitTime = jumpWindup;
-        attackTimer.Timeout += StartJump;
-        attackTimer.Start();
+        // 使用专用计时器，避免信号连接问题
+        jumpWindupTimer.WaitTime = jumpWindup;
+        jumpWindupTimer.Start();
     }
 
     private void StartJump()
@@ -193,9 +248,8 @@ public partial class Monstro : EnemyBase
 
         // 跳跃结束后落地
         float jumpDuration = GlobalPosition.DistanceTo(jumpTarget) / jumpSpeed;
-        attackTimer.WaitTime = jumpDuration;
-        attackTimer.Timeout += Land;
-        attackTimer.Start();
+        jumpDurationTimer.WaitTime = jumpDuration;
+        jumpDurationTimer.Start();
     }
 
     private void Land()
@@ -205,18 +259,14 @@ public partial class Monstro : EnemyBase
         // 落地后发射眼泪
         ShootTears();
 
-        // 落地动画结束后回到移动状态
-        attackTimer.WaitTime = 0.5f; // 落地动画持续时间
-        attackTimer.Timeout += ReturnToMoving;
-        attackTimer.Start();
+        landTimer.WaitTime = 0.5f; // 落地动画持续时间
+        landTimer.Start();
     }
 
     private void ReturnToMoving()
     {
         ChangeState(MonstroState.Moving);
 
-        // 重新开始跳跃计时
-        jumpTimer.Start();
     }
 
     private void ShootTears()
@@ -229,7 +279,7 @@ public partial class Monstro : EnemyBase
             float angle = i * Mathf.Pi / 4; // 45度间隔
             Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-            var tear = tearScene.Instantiate() as Tear;
+            var tear = tearScene.Instantiate() as TearEnemy;
             if (tear != null)
             {
                 GetParent().AddChild(tear);
@@ -242,7 +292,8 @@ public partial class Monstro : EnemyBase
 
     public override void TakeDamage(int amount)
     {
-        base.TakeDamage(amount);
+        health -= amount;
+        GD.Print($"{Name} took {amount} damage, health = {health}");
 
         // BOSS受伤时可能有特殊行为
         if (health > 0)
@@ -250,9 +301,9 @@ public partial class Monstro : EnemyBase
             // 受伤时可能中断当前行动
             if (CurrentState == MonstroState.JumpWindup)
             {
-                attackTimer.Stop();
+                jumpWindupTimer.Stop();
                 ChangeState(MonstroState.Moving);
-                jumpTimer.Start(); // 重新开始跳跃计时
+                // 不需要手动重启跳跃计时器，因为它已经是循环的
             }
 
             // 低血量时增加攻击频率
@@ -262,30 +313,40 @@ public partial class Monstro : EnemyBase
             }
 
             // 播放受伤动画（如果有）
-            if (monstroAnim.Animation != "hurt" && monstroAnim.HasAnimation("hurt"))
+            if (monstroAnim.Animation != "hurt")
             {
-                monstroAnim.Play("hurt");
+               // monstroAnim.Play("hurt");
                 // 受伤动画后回到当前状态
-                attackTimer.WaitTime = 0.3f;
-                attackTimer.Timeout += () => {
-                    if (CurrentState == MonstroState.Moving)
-                        monstroAnim.Play("move");
-                    else if (CurrentState == MonstroState.Idle)
-                        monstroAnim.Play("idle");
-                };
-                attackTimer.Start();
+                hurtTimer.WaitTime = 0.3f;
+                hurtTimer.Start();
             }
         }
+        else
+        {
+            Die();
+            gameOverScreen.ShowResult(true);
+        }
+    }
+
+    private void OnHurtAnimationFinished()
+    {
+        if (CurrentState == MonstroState.Moving)
+            monstroAnim.Play("move");
+        else if (CurrentState == MonstroState.Idle)
+            monstroAnim.Play("idle");
     }
 
     protected override void Die()
     {
         // 停止所有计时器
         jumpTimer.Stop();
-        attackTimer.Stop();
+        jumpWindupTimer.Stop();
+        jumpDurationTimer.Stop();
+        landTimer.Stop();
+        hurtTimer.Stop();
 
         // 触发死亡事件
-        OnEnemyDied?.Invoke(this);
+       InvokeOnEnemyDied();
 
         // 播放死亡动画
         monstroAnim.Play("die");

@@ -60,8 +60,8 @@ public partial class Bomb : Area2D
             Node2D obj = objNode as Node2D;
             if (obj == null) continue;                  // 如果为空，跳过
             GD.Print($"Explosion collided with: {obj.Name}");
-            // 5️⃣ 判断对象是否可以被伤害
-            string nodeName = obj.Name.ToString();      // 将Godot的StringName转换成C#的string
+            //  判断对象是否可以被伤害
+            string nodeName = obj.Name.ToString();      
             if (nodeName == "player" || nodeName.StartsWith("enemy") || obj is Stone)
             {
                 GD.Print($"{obj.Name} taking {damage} damage");

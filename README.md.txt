@@ -64,6 +64,14 @@
 - style: 
 - test:
 - chore: 
+### 2025-10-6
+- feat: 添加了BOSS monstro，添加了游戏的胜利失败标志，地图编辑完善
+- fix: 修复UI血量显示异常
+- docs:开发日志更新 
+- refactor: 
+- style: 
+- test:
+- chore: 
 
 
 

@@ -89,4 +89,8 @@ public partial class EnemyBase : CharacterBody2D
     {
         return;
     }
+    protected void InvokeOnEnemyDied()
+    {
+        OnEnemyDied?.Invoke(this);
+    }
 }

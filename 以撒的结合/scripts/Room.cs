@@ -62,6 +62,8 @@ public partial class Room : Node2D
             sp.EnemyCount = EnemyCount;
             sp.ObstacleCount = ObstacleCount;
             sp.minDistance = SpawnMinDistance;
+            sp.EnemyScenes = EnemyScenes;
+            sp.ObstacleScenes = ObstacleScenes;
         }
 
         // 同步 Doors
@@ -90,7 +92,7 @@ public partial class Room : Node2D
             if (target != null)
             {
                 door.TargetRoomPath = target.GetPath();
-                GD.Print($"{door.Name}: NodePath 已由 Room 自动修正 -> {door.TargetRoomPath}");
+                GD.Print($"{door.Name}: NodePath 已由 Room 自动修正  {door.TargetRoomPath}");
             }
             else
             {
