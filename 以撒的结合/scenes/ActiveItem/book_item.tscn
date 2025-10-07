@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dijgjj4t7osfu"]
+
+[ext_resource type="Script" uid="uid://52x77eiu3dhb" path="res://scripts/ActiveItem/BookItem.cs" id="1_n3ap5"]
+[ext_resource type="Texture2D" uid="uid://dyb0g7qhkdotf" path="res://以撒全贴图/道具/collectibles_545_bookofthedead.png" id="2_1oyc2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_se0va"]
+size = Vector2(34, 41)
+
+[node name="BookItem" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_n3ap5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.04, 2.04)
+texture = ExtResource("2_1oyc2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_se0va")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jxv5f5xtk4o6"]
+[gd_scene load_steps=11 format=3 uid="uid://jxv5f5xtk4o6"]
 
 [ext_resource type="PackedScene" uid="uid://d2gj446y0ft4p" path="res://scenes/player.tscn" id="1_lkoyb"]
 [ext_resource type="PackedScene" uid="uid://dr2qtqv7cv1dp" path="res://scenes/enemy/enemyNerve.tscn" id="2_653ys"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://0vtrsg0at013" path="res://scenes/spike.tscn" id="5_foumo"]
 [ext_resource type="PackedScene" uid="uid://b8cqlx81i4lib" path="res://scenes/enemy/monstro.tscn" id="6_it2jm"]
 [ext_resource type="PackedScene" uid="uid://c2wqxhjc66khk" path="res://scenes/hud.tscn" id="7_p13ka"]
+[ext_resource type="PackedScene" uid="uid://dijgjj4t7osfu" path="res://scenes/ActiveItem/book_item.tscn" id="8_d5ocq"]
 [ext_resource type="PackedScene" uid="uid://co6r1t63nmpm3" path="res://scenes/GameOverScreen.tscn" id="9_foumo"]
 
 [node name="root" type="Node2D"]
@@ -114,6 +115,13 @@ TopDoorTargetRoomPath = NodePath("../room3")
 [node name="player" parent="." instance=ExtResource("1_lkoyb")]
 position = Vector2(822, 567)
 scale = Vector2(1.9326925, 1.8711538)
+
+[node name="BookItem" parent="." instance=ExtResource("8_d5ocq")]
+position = Vector2(1113, 664)
+collision_layer = 16
+ItemName = "书"
+Description = "燃尽了"
+EnergyCost = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(378, 322)

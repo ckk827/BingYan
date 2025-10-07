@@ -104,6 +104,9 @@ public partial class Hud : CanvasLayer
     [Export] public HBoxContainer HeartsContainer;
     [Export] public HBoxContainer KeysContainer;
     [Export] public HBoxContainer BombsContainer;
+    [Export] public TextureProgressBar EnergyBar;
+    [Export] public TextureRect PlayerIcon;
+
 
     [Export] public Texture2D FullHeart;
     [Export] public Texture2D HalfHeart;
@@ -116,6 +119,11 @@ public partial class Hud : CanvasLayer
     private Label bombLabel;
     private TextureRect keyIconRect;
     private TextureRect bombIconRect;
+    private TextureProgressBar bossHealthBar;
+    private Label bossNameLabel;
+
+    private int currentHealth;
+
 
     // 存储心形节点的数组
     private TextureRect[] heartTextures;
@@ -129,7 +137,6 @@ public partial class Hud : CanvasLayer
         if (player == null)
         {
             GD.PrintErr("HUD: 找不到玩家节点！");
-            // 尝试其他可能的路径
             player = GetNodeOrNull<Player>("/root/root/player");
             if (player == null)
             {
@@ -175,6 +182,12 @@ public partial class Hud : CanvasLayer
             GD.PrintErr("HUD: BombsContainer 为 null!");
         }
 
+        //主动道具贴图
+        if (PlayerIcon == null)
+            PlayerIcon = GetNodeOrNull<TextureRect>("PlayerIcon");
+
+        // 显示角色头像
+        UpdatePlayerIcon();
         // 检查纹理
         GD.Print($"HUD: 纹理 - FullHeart: {FullHeart != null}, HalfHeart: {HalfHeart != null}, EmptyHeart: {EmptyHeart != null}");
         GD.Print($"HUD: 纹理 - KeyIcon: {KeyIcon != null}, BombIcon: {BombIcon != null}");
@@ -184,6 +197,26 @@ public partial class Hud : CanvasLayer
             keyIconRect.Texture = KeyIcon;
         if (BombIcon != null && bombIconRect != null)
             bombIconRect.Texture = BombIcon;
+
+        // 能量条初始化
+        if (EnergyBar != null && player != null)
+        {
+            EnergyBar.MinValue = 0;
+            EnergyBar.MaxValue = player.MaxEnergy;
+            EnergyBar.Value = player.energy;
+            GD.Print($"HUD: EnergyBar 初始化成功, 当前能量: {player.energy}/{player.MaxEnergy}");
+        }
+        else
+        {
+            GD.PrintErr("HUD: EnergyBar 未设置或 player 为 null!");
+        }
+
+
+        //boss血条
+        bossHealthBar = GetNode<TextureProgressBar>("BossBarContainer/BossHealthBar");
+        bossNameLabel = GetNode<Label>("BossBarContainer/BossNameLabel");
+        HideBossBar(); // 一开始隐藏
+
 
         GD.Print("HUD: _Ready() 完成");
     }
@@ -196,7 +229,6 @@ public partial class Hud : CanvasLayer
             return;
         }
 
-        // 获取所有心形子节点
         var heartNodes = HeartsContainer.GetChildren();
         heartTextures = new TextureRect[heartNodes.Count];
 
@@ -228,13 +260,15 @@ public partial class Hud : CanvasLayer
         UpdateHearts();
         UpdateKeys();
         UpdateBombs();
+        UpdateEnergy();
+        UpdatePlayerIcon();
+
     }
 
     private void UpdateHearts()
     {
         if (heartTextures == null || heartTextures.Length == 0)
         {
-            // 如果心形数组未初始化，尝试初始化
             InitializeHearts();
             return;
         }
@@ -293,5 +327,73 @@ public partial class Hud : CanvasLayer
     {
         if (bombLabel != null && player != null)
             bombLabel.Text = $": {player.bombCount}";
+    }
+    private void UpdateEnergy()
+    {
+        if (EnergyBar == null || player == null) return;
+
+        EnergyBar.MaxValue = player.MaxEnergy;
+        EnergyBar.Value = player.energy;
+    }
+    private void UpdatePlayerIcon()
+    {
+        if (PlayerIcon == null)
+        {
+            GD.PrintErr("HUD: PlayerIcon 未设置！");
+            return;
+        }
+
+        if (player == null)
+        {
+            GD.PrintErr("HUD: player 为 null！");
+            return;
+        }
+
+        var area = player.GetNodeOrNull<Area2D>("BookItem");
+        if (area == null)
+        {
+           // GD.PrintErr("HUD: 未找到 player 下的 BookItem 节点！");
+            return;
+        }
+
+        var sprite = area.GetNodeOrNull<Sprite2D>("Sprite2D");
+        if (sprite == null)
+        {
+            GD.PrintErr("HUD: 未找到 Area2D 下的 Sprite2D 节点！");
+            return;
+        }
+
+        if (sprite.Texture == null)
+        {
+            GD.PrintErr("HUD: Sprite2D 没有贴图！");
+            return;
+        }
+
+        // 将角色贴图赋给 HUD 的 PlayerIcon
+        PlayerIcon.Texture = sprite.Texture;
+        PlayerIcon.Visible = true;
+    }
+
+
+    // BOSS
+    public void ShowBossBar(string bossName, int maxHp)
+    {
+        bossNameLabel.Text = bossName;
+        bossHealthBar.MaxValue = maxHp;
+        bossHealthBar.Value = maxHp;
+
+        bossHealthBar.Visible = true;
+        bossNameLabel.Visible = true;
+        bossHealthBar.GetParent<Control>().Visible = true;
+    }
+
+    public void UpdateBossBar(int currentHp)
+    {
+        bossHealthBar.Value = currentHp;
+    }
+
+    public void HideBossBar()
+    {
+        bossHealthBar.GetParent<Control>().Visible = false;
     }
 }

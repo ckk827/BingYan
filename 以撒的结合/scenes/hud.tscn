@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2wqxhjc66khk"]
+[gd_scene load_steps=11 format=3 uid="uid://c2wqxhjc66khk"]
 
 [ext_resource type="Script" uid="uid://coo7leiottv1i" path="res://scripts/Hud.cs" id="1_ahhtf"]
 [ext_resource type="Texture2D" uid="uid://cfyu1kv23st0d" path="res://以撒全贴图/UI/fullheart.png" id="2_uo2fv"]
@@ -6,16 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://qvudoslanjfy" path="res://以撒全贴图/UI/key.png" id="4_5pdws"]
 [ext_resource type="Texture2D" uid="uid://donap431dub72" path="res://以撒全贴图/UI/emptyheart.png" id="4_047uy"]
 [ext_resource type="Texture2D" uid="uid://sajjl2lqrojl" path="res://以撒全贴图/UI/bomb.png" id="5_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://cvjk5dsx56t18" path="res://以撒全贴图/子弹&炸弹/bomb2.png" id="7_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://bp75cb8peokxn" path="res://以撒全贴图/子弹&炸弹/bomb.png" id="8_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://g68vk05mi3gq" path="res://以撒全贴图/UI/红色血条_爱给网_aigei_com.png" id="9_0i1j5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0i1j5"]
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("HeartsContainer", "KeysContainer", "BombsContainer")]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("HeartsContainer", "KeysContainer", "BombsContainer", "EnergyBar")]
 scale = Vector2(2.025, 2.025)
 transform = Transform2D(2.025, 0, 0, 2.025, 0, 0)
 script = ExtResource("1_ahhtf")
 HeartsContainer = NodePath("Control/HeartsContainer")
 KeysContainer = NodePath("Control/KeysContainer")
 BombsContainer = NodePath("Control/BombsContainer")
+EnergyBar = NodePath("Control/EnergyBar")
 FullHeart = ExtResource("2_uo2fv")
 HalfHeart = ExtResource("3_047uy")
 EmptyHeart = ExtResource("4_047uy")
@@ -67,8 +71,33 @@ layout_mode = 2
 [node name="BombLabel" type="Label" parent="Control/BombsContainer"]
 layout_mode = 2
 
-[node name="EnergyBar" type="ProgressBar" parent="Control"]
+[node name="EnergyBar" type="TextureProgressBar" parent="Control"]
 layout_mode = 0
-offset_left = 202.0
-offset_right = 206.0
-offset_bottom = 49.0
+offset_left = 202.96295
+offset_top = 15.802467
+offset_right = 452.96295
+offset_bottom = 265.80246
+fill_mode = 3
+texture_under = ExtResource("7_hd3ao")
+texture_progress = ExtResource("8_0i1j5")
+
+[node name="PlayerIcon" type="TextureRect" parent="."]
+offset_left = 324.44443
+offset_top = -0.49382713
+offset_right = 364.44443
+offset_bottom = 39.506172
+stretch_mode = 5
+
+[node name="BossBarContainer" type="HBoxContainer" parent="."]
+offset_left = 226.66666
+offset_top = 317.53085
+offset_right = 550.6172
+offset_bottom = 347.16046
+
+[node name="BossNameLabel" type="Label" parent="BossBarContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="BossBarContainer"]
+layout_mode = 2
+texture_progress = ExtResource("9_0i1j5")

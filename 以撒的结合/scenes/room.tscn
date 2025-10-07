@@ -1851,7 +1851,7 @@ EnemyScenes = Array[PackedScene]([ExtResource("4_qvc4m"), ExtResource("5_7dqbv")
 ObstacleScenes = Array[PackedScene]([ExtResource("6_7dqbv"), ExtResource("9_eom3m")])
 EnemyCount = 10
 ObstacleCount = 5
-SpawnArea = Rect2(-500, -300, 1000, 600)
+SpawnArea = Rect2(-500, -300, 1000, 400)
 minDistance = 100.0
 PickupScene = ExtResource("9_qtoah")
 

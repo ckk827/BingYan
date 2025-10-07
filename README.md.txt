@@ -72,6 +72,16 @@
 - style: 
 - test:
 - chore: 
+### 2025-10-7
+- feat: 添加了BOSS血条，添加了能量条，添加了主动道具 七原罪之书，添加了主动道具的UI，添加了替换主动道具的逻辑
+，添加了restart功能
+- fix: 
+- docs:来不及做完了QWQ
+- refactor: 
+- style: 
+- test:
+- chore: 
+
 
 
 

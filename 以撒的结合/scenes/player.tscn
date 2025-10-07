@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://d2gj446y0ft4p"]
+[gd_scene load_steps=58 format=3 uid="uid://d2gj446y0ft4p"]
 
 [ext_resource type="Script" uid="uid://c8t3awu5v1tly" path="res://scripts/Player.cs" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://cg23pfb5p5jxi" path="res://以撒全贴图/人物/表人物/character_001_isaac.png" id="2_g2els"]
@@ -406,14 +406,19 @@ animations = [{
 radius = 24.0
 height = 66.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fjrip"]
+radius = 41.773197
+
 [node name="player" type="CharacterBody2D"]
 position = Vector2(-3, 8)
-collision_mask = 14
+collision_mask = 30
 script = ExtResource("1_3vyb7")
 moveSpeed = 500.0
 tearScene = ExtResource("2_tuyoq")
 bombScene = ExtResource("3_fjrip")
 bombCount = 3
+energy = 5
+MaxEnergy = 10
 
 [node name="feet" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 6)
@@ -431,3 +436,10 @@ animation = &"headUp"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_qlg0r")
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_fjrip")

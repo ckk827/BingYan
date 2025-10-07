@@ -7,7 +7,7 @@ public partial class GameOverScreen : CanvasLayer
 
     public override void _Ready()
     {
-        // 确保在编辑器中正确分配了节点
+
         GD.Print("Current Scene is: ", GetTree().CurrentScene?.Name);
 
         if (resultLabel == null)
@@ -20,7 +20,7 @@ public partial class GameOverScreen : CanvasLayer
             GD.PrintErr("RestartButton not assigned in editor!");
         }
 
-        // 初始隐藏
+  
         Hide();
     }
 
@@ -34,13 +34,13 @@ public partial class GameOverScreen : CanvasLayer
 
         Show();
 
-        // 暂停游戏
+ 
         GetTree().Paused = true;
     }
 
     private void OnRestartPressed()
     {
-        // 取消暂停
+       
         GetTree().Paused = false;
         // 重新加载当前场景
         GetTree().ReloadCurrentScene();

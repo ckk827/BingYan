@@ -34,6 +34,8 @@ public partial class Room : Node2D
     private int enemyTotal = 0;
     private SpawnPoints spawnPoints;
 
+ //   [Signal] public delegate void RoomClearedEventHandler(); //房间已经清理
+
 
     public override void _Ready()
     {
@@ -136,7 +138,14 @@ public partial class Room : Node2D
         if (cleared) return;
 
         cleared = true;
+
+    //    EmitSignal(SignalName.RoomCleared);
+    
         UnlockDoors();
+        var playernode = GetParent().GetParent().GetNode<Player>("player"); ;
+        playernode.energy += 1;
+        if (playernode.ExtraDamage != 0) playernode.ExtraDamage = 0;
+
         GameState.ClearedRooms.Add(Name); 
         GD.Print($"房间 {Name} 已清空，门已打开，状态已保存。");
     }
@@ -157,7 +166,7 @@ public partial class Room : Node2D
 
     private void UnlockDoors()
     {
-        GD.Print("🔑 调用 UnlockDoors()");
+        GD.Print("调用 UnlockDoors()");
 
         var doorNodes = GetTree().GetNodesInGroup("Doors");
         GD.Print($"找到 {doorNodes.Count} 个 Doors 组节点");

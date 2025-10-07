@@ -33,6 +33,9 @@ public partial class Monstro : EnemyBase
     private Timer hurtTimer;
     private Vector2 jumpTarget;
 
+    [Export] public int MaxHealth = 50;
+
+
     private GameOverScreen gameOverScreen; // 引用结束UI节点
 
 
@@ -86,6 +89,12 @@ public partial class Monstro : EnemyBase
         hurtTimer.OneShot = true;
         hurtTimer.Timeout += OnHurtAnimationFinished;
         AddChild(hurtTimer);
+
+        MaxHealth = health;       // 获取最大血量用于血条显示
+        var hud = GetTree().Root.GetNodeOrNull<Hud>("root/HUD");
+        if (hud != null)
+            hud.ShowBossBar("Monstro", MaxHealth);
+        else GD.Print("Monstro: HUD节点获取失败");
 
         // 初始状态
         ChangeState(MonstroState.Moving); // 直接进入移动状态
@@ -198,7 +207,7 @@ public partial class Monstro : EnemyBase
     {
         if (player == null) return;
 
-        // 根据玩家位置翻转精灵
+        // 根据玩家位置翻转动画
         if (player.GlobalPosition.X < GlobalPosition.X)
         {
             monstroAnim.FlipH = true;
@@ -295,15 +304,18 @@ public partial class Monstro : EnemyBase
         health -= amount;
         GD.Print($"{Name} took {amount} damage, health = {health}");
 
-        // BOSS受伤时可能有特殊行为
+        var hud = GetTree().Root.GetNodeOrNull<Hud>("root/HUD");
+        if (hud != null)
+            hud.UpdateBossBar(health);
+        // 血量低时特殊行为
         if (health > 0)
         {
-            // 受伤时可能中断当前行动
+  
             if (CurrentState == MonstroState.JumpWindup)
             {
                 jumpWindupTimer.Stop();
                 ChangeState(MonstroState.Moving);
-                // 不需要手动重启跳跃计时器，因为它已经是循环的
+        
             }
 
             // 低血量时增加攻击频率
@@ -312,7 +324,7 @@ public partial class Monstro : EnemyBase
                 jumpTimer.WaitTime = jumpCooldown * 0.7f; // 减少30%冷却
             }
 
-            // 播放受伤动画（如果有）
+       
             if (monstroAnim.Animation != "hurt")
             {
                // monstroAnim.Play("hurt");
@@ -348,7 +360,6 @@ public partial class Monstro : EnemyBase
         // 触发死亡事件
        InvokeOnEnemyDied();
 
-        // 播放死亡动画
         monstroAnim.Play("die");
 
         // 禁用移动和碰撞伤害
@@ -357,7 +368,6 @@ public partial class Monstro : EnemyBase
         Velocity = Vector2.Zero;
     }
 
-    // 添加一个方法来处理房间边界设置
     public void SetRoomBounds(Rect2 bounds)
     {
         roomBounds = bounds;
